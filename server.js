@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const User = require("./models/userModel");
-const uri = "mongodb+srv://devdanielcw:n8CCLiFqoNhneC6b@cluster0.fnyptwq.mongodb.net/";
 
 // middleware 
 app.use(express.json())
