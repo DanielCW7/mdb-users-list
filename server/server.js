@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const app = express();
 const User = require("./models/userModel");
 const cors = require("cors");
+const getUsers = require("./routes/getUsers")
 require('dotenv').config()
+
 
 // middleware 
 app.use(cors({
@@ -30,17 +32,20 @@ const connectDB = async () => {
 
 // routes
 
-app.get("/", async (req, res) => {
-    // res.send({"users": ["1", "2", "3"]})
-    await connectDB();
+app.use("/", getUsers)
 
-    const data = mongoose.connection.getClient().db().admin();
-    const dbInfo = await data.listDatabases();
 
-    const db = dbInfo.databases.find(db => db.name === "test")
-    res.json({ database: db })
+// app.get("/", async (req, res) => {
+//     // res.send({"users": ["1", "2", "3"]})
+//     await connectDB();
 
-})
+//     const data = mongoose.connection.getClient().db().admin();
+//     const dbInfo = await data.listDatabases();
+
+//     const db = dbInfo.databases.find(db => db.name === "test")
+//     res.json({ database: db })
+
+// })
 
 app.post("/user", async (req, res) => {
     try {
